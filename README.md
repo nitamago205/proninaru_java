@@ -1,1 +1,1 @@
-# proninaru_java
+# 参考書「プロになるJava」
