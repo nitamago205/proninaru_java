@@ -1,5 +1,7 @@
 package projava;
 
+import javax.net.SocketFactory;
+import javax.net.ssl.SSLSocketFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,8 +10,10 @@ import java.net.Socket;
 
 public class WebClient {
     public static void main(String[] args) throws IOException {
-        var domain = "example.com";
-        try (var soc = new Socket(domain, 80);
+        var domain = "www.google.com";
+
+        SocketFactory factory = SSLSocketFactory.getDefault();
+        try (Socket soc = factory.createSocket(domain, 443);
              var pw = new PrintWriter(soc.getOutputStream());
              var isr = new InputStreamReader(soc.getInputStream());
              var bur = new BufferedReader(isr))
